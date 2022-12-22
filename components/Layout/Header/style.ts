@@ -5,6 +5,7 @@ export const BodySTY = styled.div`
   align-items: center;
   height: 80px;
   border: 1px solid ${({ theme }) => theme.XinMedia.SofterGrey};
+  z-index: 5;
 
   // Header左方功能列
   .left-side {

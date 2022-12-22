@@ -14,10 +14,8 @@ export const XinMedia = {
   Saffron: "#F5C834",
   Lemon: "#fff0a7",
   // 藍綠
-  DullCyan: "#43BEBF",
-  Downy: "#6FD8D0",
-  LightBlue: "#dbfbf0",
-  DarkCyan: "#008B8B",
+  DeepBlue: "rgb(40, 55, 68)",
+  LightBlue: "#39435C",
   // 黑白
   Dark: "#333333",
   Grey: "#7E7E7E",
