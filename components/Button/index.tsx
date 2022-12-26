@@ -13,6 +13,7 @@ const Button: React.FC<I_Button> = (props) => {
   return (
     <BodySTY className={cx({ [className]: className })}>
       <button
+        type="button"
         onClick={(e) => {
           e.preventDefault();
           onCallBack && onCallBack(e);

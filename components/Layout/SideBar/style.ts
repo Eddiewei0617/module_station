@@ -58,6 +58,10 @@ export const BodySTY = styled.div<{ subLength?: number | null }>`
       li:not(:last-child) {
         border-bottom: 1px solid ${({ theme }) => theme.XinMedia.Grey};
       }
+
+      .active-subtitle {
+        font-weight: 700;
+      }
     }
   }
 

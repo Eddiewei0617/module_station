@@ -10,6 +10,7 @@ interface I_SubItem {
 
 const SideBar = () => {
   const [activeTitle, setActiveTitle] = useState<string>("title1");
+  const [activeSubtitle, setActiveSubtitle] = useState<string>("planInfo");
   const [subLength, setSubLength] = useState<number>(
     arr[0].subtitles.length + 1
   );
@@ -24,8 +25,12 @@ const SideBar = () => {
 
   // 點了哪個subtitle就進去並渲染該畫面
   const handleRoute = (subItem: I_SubItem) => {
-    if (subItem.value === "planInfo") return router.push("/title1/planinfo");
+    setActiveSubtitle(subItem.value);
+    if (subItem.value === "planInfo") {
+      return router.push("/title1/planinfo");
+    }
   };
+  console.log("activeSubtitle", activeSubtitle);
 
   return (
     <BodySTY subLength={subLength}>
@@ -42,7 +47,13 @@ const SideBar = () => {
             </div>
             <ul>
               {item.subtitles.map((subItem) => (
-                <li key={subItem.subtitle} onClick={() => handleRoute(subItem)}>
+                <li
+                  key={subItem.subtitle}
+                  onClick={() => handleRoute(subItem)}
+                  className={`${
+                    subItem?.value === activeSubtitle && "active-subtitle"
+                  }`}
+                >
                   {subItem.subtitle}
                 </li>
               ))}
