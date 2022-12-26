@@ -16,7 +16,7 @@ export const BodySTY = styled.div`
   }
 
   // 歡迎字樣
-  p {
+  p:not(.err-msg) {
     font-size: 50px;
     font-weight: 700;
     line-height: 65px;

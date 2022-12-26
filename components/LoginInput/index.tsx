@@ -8,7 +8,7 @@ interface I_LoginInput {
   icon?: string; // google icons
   className?: string;
   onChangeCallback?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onKeyDown?: (e: any) => void;
+  wrongTimes?: number;
 }
 
 const LoginInput: React.FC<I_LoginInput> = (props) => {
@@ -19,7 +19,7 @@ const LoginInput: React.FC<I_LoginInput> = (props) => {
     icon,
     className,
     onChangeCallback,
-    onKeyDown,
+    wrongTimes,
   } = props;
 
   return (
@@ -30,6 +30,7 @@ const LoginInput: React.FC<I_LoginInput> = (props) => {
         <input
           type={type}
           id={inputName}
+          disabled={wrongTimes === 3 && true}
           onChange={(e) => {
             onChangeCallback && onChangeCallback(e);
           }}

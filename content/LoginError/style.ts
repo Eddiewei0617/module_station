@@ -7,8 +7,10 @@ export const BodySTY = styled.div`
   align-items: center;
   justify-content: space-evenly;
   margin: 20px auto;
+
   .err-msg {
     font-size: ${({ theme }) => theme.font.M};
-    line-height: 50px;
+    font-weight: 700;
+    margin: 20px 10px;
   }
 `;

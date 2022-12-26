@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { BodySTY } from "./style";
 import LoginInput from "../../components/LoginInput";
@@ -11,12 +11,14 @@ interface I_AdminInput {
   password: string;
 }
 
+// let storage = localStorage;
 const Login = () => {
   const [adminInput, setAdminInput] = useState<I_AdminInput>({
     account: "",
     password: "",
   });
   const [success, setSuccess] = useState<boolean>(true);
+  const [wrongTimes, setWrongTimes] = useState<number>(0); // 計算輸入錯誤幾次
 
   // 隨時抓取輸入的帳號和密碼並存入狀態
   const handleInputChange = (type: string, input: string) => {
@@ -33,12 +35,19 @@ const Login = () => {
     console.log("adminInput", adminInput);
     if (adminInput.account === "123" && adminInput.password === "123") {
       setSuccess(true);
+      setWrongTimes(0);
       alert("LOGIN!!!!!!!!!");
     } else {
       // 錯誤訊息
       setSuccess(false);
+      setWrongTimes(wrongTimes + 1);
     }
   };
+
+  // 錯誤次數變化時同時更新localStorage的次數
+  useEffect(() => {
+    localStorage.setItem("wrongTimes", JSON.stringify(wrongTimes));
+  }, [wrongTimes]);
 
   return (
     <BodySTY>
@@ -60,7 +69,12 @@ const Login = () => {
       <p>雄獅通運同仁</p>
 
       {/* 登入錯誤才跳出錯誤訊息 */}
-      {success === false && <LoginError></LoginError>}
+      {success === false && (
+        <LoginError
+          wrongTimes={wrongTimes}
+          setWrongTimes={setWrongTimes}
+        ></LoginError>
+      )}
 
       <LoginInput
         type="text"
@@ -71,6 +85,7 @@ const Login = () => {
         onChangeCallback={(e) => {
           handleInputChange("account", e.target.value);
         }}
+        wrongTimes={wrongTimes}
       ></LoginInput>
       <div className="all-password">
         <LoginInput
@@ -81,7 +96,7 @@ const Login = () => {
           onChangeCallback={(e) => {
             handleInputChange("password", e.target.value);
           }}
-          onKeyDown={(e) => {}}
+          wrongTimes={wrongTimes}
         ></LoginInput>
         <div className="forgot-password">
           <span className="material-icons">help</span>
