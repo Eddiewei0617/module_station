@@ -6,7 +6,6 @@ import { BodySTY } from "./style";
 
 const withLayout = (props: any) => {
   const { children } = props;
-  console.log("children", children);
 
   return (
     <BodySTY>

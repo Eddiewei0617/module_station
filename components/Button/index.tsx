@@ -5,7 +5,7 @@ import cx from "classnames";
 interface I_Button {
   name: string;
   className?: string | any;
-  onCallBack?: () => void;
+  onCallBack?: (e: any) => void;
 }
 
 const Button: React.FC<I_Button> = (props) => {
@@ -13,8 +13,9 @@ const Button: React.FC<I_Button> = (props) => {
   return (
     <BodySTY className={cx({ [className]: className })}>
       <button
-        onClick={() => {
-          onCallBack && onCallBack();
+        onClick={(e) => {
+          e.preventDefault();
+          onCallBack && onCallBack(e);
         }}
       >
         {name}
